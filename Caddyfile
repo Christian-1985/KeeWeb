@@ -1,0 +1,22 @@
+{
+	order webdav before file_server
+	log {
+		level INFO
+	}
+}
+
+:8080 {
+	@dbfiles {
+		path *.kdbx
+		path *.kdbx.*
+	}
+
+	webdav @dbfiles {
+		root /srv/dav/
+	}
+
+	file_server {
+		root /srv
+		index index.html
+	}
+} 
